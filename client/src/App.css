@@ -1,0 +1,17 @@
+.App {
+  text-align: center;
+  justify-content: center;
+  margin: 40% 0;
+  display: flex;
+}
+
+html {
+  background-color: #384047;
+}
+
+.ad-hoc-link {
+  font-size: 1.5em;
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+}

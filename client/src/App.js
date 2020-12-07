@@ -16,7 +16,7 @@ function App() {
 
   return (
     <div className="App">
-      <Link to="/messages" className="ad-hoc-link" >Messages</Link>
+      <Link to="/message" className="ad-hoc-link" >Messages</Link>
       <Switch>
 
         <Route exact path="/">
@@ -27,7 +27,7 @@ function App() {
           <Register />
         </Route>
 
-        <Route path="/messages">
+        <Route path="/message">
           <Messages token={ token }/>
         </Route>
 

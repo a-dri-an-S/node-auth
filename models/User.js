@@ -14,6 +14,9 @@ const UserSchema = new Schema({
         type: String,
         required: true
     },
+    user_threads: {
+        type:  Array
+    },
     date: {
         type: Date,
         default: Date.now

@@ -21,7 +21,7 @@ const Messages = ({ token }) => {
         <div>
             <h1>Messages</h1>
             {
-                messages ?  <h2>{ messages[0] }</h2> : <></>
+                messages ?  <h2>{ messages }</h2> : <></>
             }
         </div>
     );

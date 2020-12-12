@@ -3,32 +3,42 @@ const User = require("../models/User");
 const Message = require("../models/Message");
 const { json } = require("body-parser");
 
+const getListOfNames = async (docs,list) => {
+    let listOfNames = [...list];
+
+    // console.log(docs.user_threads[0]);
+    for(let i = 0; i < docs.user_threads.length; i++ ) {
+
+        await User.findById(docs.user_threads[i])
+        .exec((err, docs) => {
+        if(err) res.status(500).json({ message: `error ${ err }` });
+        else if(docs.length === 0) res.status(404).json({ message: 'No user found' }); 
+        else {
+            console.log(docs);
+            listOfNames.push({name: docs.name, id: docs._id});
+            console.log(listOfNames);
+        }
+    })
+    }
+    return listOfNames;
+}
 
 // return a list of user names that have ever communicated with the logged in user.
 const getUserThreads = async (req, res) => {
+
+    let listOfNames = [];
+
     await User.findById(res.locals.user._id)
         .exec((err, docs) => {
             if(err) res.status(500).json({message:`error${err}`});
             else if(docs.length===0) res.status(404).json({message:`no user found`});
             else {
-                // console.log(docs.user_threads[0]);
-                let listOfNames = [];
-                User.findById(docs.user_threads[0])
-                    .exec((err, docs) => {
-                    if(err) res.status(500).json({ message: `error ${ err }` });
-                    else if(docs.length === 0) res.status(404).json({ message: 'No user found' }); 
-                    else {
-                        console.log(docs.name);
-                        listOfNames.push(docs.name);
-                        res.status(200).json(listOfNames);
-                    }
-                })
-        
+                listOfNames = getListOfNames(docs, listOfNames);
+                console.log(listOfNames);
+                res.status(200).json(listOfNames);
             }
         })
 }
-
-
 
 const getMessagesBySender = async (req, res) => {
     let sender = ""; 
@@ -51,10 +61,8 @@ const getMessagesBySender = async (req, res) => {
                 res.status(200).json(docs);
             }
         })
-    
     }
     });
-
 };
 
 const seedDB = async (req, res) => {

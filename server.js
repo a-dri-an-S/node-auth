@@ -1,7 +1,7 @@
 // imports
 const express = require('express');
-const logger = require('morgan');
-const dbLogger = require('mongo-morgan');
+// const logger = require('morgan');
+// const dbLogger = require('mongo-morgan');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
@@ -18,6 +18,8 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 // middleware
+app.use(express.static(path.join(__dirname, 'client/build')));
+
 app.use(cors());
 // app.use(logger('dev'));
 // app.use(dbLogger(process.env.DB_URL, 'dev'));

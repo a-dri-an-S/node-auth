@@ -11,7 +11,7 @@ const { seedDB, getMessagesBySender, getUserThreads } = require("../controllers/
 //     } 
 // })})
 
-// router.get("/",  getUserThreads);
+router.get("/",  getUserThreads);
 
 // GET //
 router.get("/", getMessagesBySender);

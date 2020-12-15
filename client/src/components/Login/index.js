@@ -16,7 +16,7 @@ const Login = ({ setToken }) => {
     const submitLogin = async (e) => {
 
         e.preventDefault();
-        let dbUrl = 'http://localhost:5000/login/';
+        let dbUrl = '/login/';
 
         let status = await axios.post(dbUrl, { email: emailInput, password: passwordInput });
         setToken(status.data);

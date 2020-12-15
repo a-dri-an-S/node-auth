@@ -8,7 +8,7 @@ const Messages = ({ token }) => {
     const [messages, setMessages] = useState(false);
 
     const fetchData = async () => {
-        const response = await axios.get(`http://localhost:5000/message/`, { headers: { 'auth-token': token } });
+        const response = await axios.get(`/message/`, { headers: { 'auth-token': token } });
         setMessages(response.data);
         console.log(response.data);
     }
